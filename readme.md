@@ -1,6 +1,6 @@
 # Setup Details
 
-# Peerequisites
+# Prerequisites
  - node version : v16.13.0 (min.)
 
 ## Used Technologies
