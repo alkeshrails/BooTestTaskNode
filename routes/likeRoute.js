@@ -7,7 +7,7 @@ const router = express.Router();
 // router.patch("/", PostController.updatePost);
 
 module.exports = function () {
-//   router.post("/", createLike);
+  router.post("/", createLike);
   router.get("/:id?", getLike);
   return router;
 };

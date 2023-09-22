@@ -9,7 +9,6 @@ function CreatePost(req, res) {
 }
 
 function GetPost(req, res) {
-  console.log(req.params);
   const postID = req.params.id;
   if (postID) {
     postModel

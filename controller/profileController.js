@@ -40,7 +40,7 @@ async function initSeed() {
     profile
       .save()
       .then(() => console.log("data added successfully....!"))
-      .catch((error) => console.json({ error: error }));
+      .catch((error) => console.log(error));
   }
 }
 
