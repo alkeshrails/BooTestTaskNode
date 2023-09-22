@@ -1,20 +1,28 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 const profileModel = require("../model/profileModel");
 const router = express.Router();
 
 module.exports = function () {
-  router.get("/*", async function (req, res, next) {
-    const profiles = await profileModel
-      .find({})
-      .then((data) => data)
-      .catch((error) => res.json({ error: error }));
+  router.get("/:id?", async function (req, res, next) {
+    const id = req.params.id;
+    let profile;
+    if (!id) {
+      profile = await profileModel
+        .find({})
+        .then((data) => data[0])
+        .catch((error) => res.json({ error: error }));
+    } else {
+      profile = await profileModel
+        .findById({ _id: req.params.id })
+        .then((data) => data)
+        .catch((error) => res.json({ error: error }));
+    }
     res.render("profile_template", {
-      profile: profiles[0],
+      profile: profile,
     });
   });
 
   return router;
 };
-
