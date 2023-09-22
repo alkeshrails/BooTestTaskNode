@@ -9,10 +9,19 @@ function CreatePost(req, res) {
 }
 
 function GetPost(req, res) {
-  postModel
-    .find({})
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ error: error }));
+  console.log(req.params);
+  const postID = req.params.id;
+  if (postID) {
+    postModel
+      .findById(postID)
+      .then((data) => res.json(data))
+      .catch((error) => res.json({ error: error }));
+  } else {
+    postModel
+      .find({})
+      .then((data) => res.json(data))
+      .catch((error) => res.json({ error: error }));
+  }
 }
 
 module.exports = {
