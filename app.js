@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 // routes
 app.use("/profile", require("./routes/profile")());
 app.use("/api/profile", require("./routes/profileApi")());
+app.use("/api/post", require("./routes/postRoutes")());
 
 connect()
   .then(function () {
