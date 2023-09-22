@@ -10,14 +10,17 @@ function CreatePost(req, res) {
 
 function GetPost(req, res) {
   const postID = req.params.id;
+  const sort = req.query.sort;
   if (postID) {
     postModel
       .findById(postID)
       .then((data) => res.json(data))
       .catch((error) => res.json({ error: error }));
   } else {
+    const sortQuery = sort === "Best" ? { likesCount: -1 } : { _id: 1 };
     postModel
       .find({})
+      .sort(sortQuery)
       .then((data) => res.json(data))
       .catch((error) => res.json({ error: error }));
   }
